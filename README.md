@@ -1,2 +1,0 @@
-# BTD
-Back Ticket Display
