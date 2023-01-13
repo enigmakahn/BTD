@@ -1,0 +1,79 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style/README.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="text">
+      <h1>Getting started</h1>
+      <p>The Back ticket Display is a JavaScript code that displays a list of tickets from a the Repair Desk API on a
+        webpage. The list is organized by priority, with priority tickets being displayed at the top of the page. You
+        can
+        customize the code by editing the settings and options at the beginning of the file.</p>
+      <p>To edit the code, you will need to use a text editor such as Notepad. First, open Notepad on your computer,
+        then navigate to the location of where you unzipped the BTD folder. Look for the "js" folder and inside of there
+        is a main.js file, this is the file you need to
+        customize. Do not edit below where it says "// Do not edit beyond this line" as it may cause the code not to
+        work.</p>
+      <p>To customize the code, you will need to replace the values in the settings and options with your own. To change
+        the API key for example, you will need to replace the value of RDapi with your own API key. Info on where to
+        find that can be found <a href="https://help.repairdesk.co/knowledgebase/articles/1189105-public-api">here.</a>
+      </p>
+      <p>You can also customize the tickets shown by modifying the values in the priorityQue, regularQue, waitingQue,
+        and schedQue arrays. These arrays contain the statuses of the tickets that will be included in each priority.
+        For example, if you want to add a new ticket status to the priorityQue called "High Priority", you can do so by
+        adding to the array like this:</p>
+      <div class="example">let priorityQue = ["Same Day Repair", "RUSH - Priority Service","High Priority"];</div>
+
+      <p>You can also customize the options for displaying the list of tickets.
+        The waitingBool and schedBool option determines whether waiting or scheduled tickets should be displayed at the
+        top of the page. Set this value to true if you want each of those ticket types to be displayed at the top, or
+        false if you
+        don't.</p>
+
+      <p>The portVar option determines whether the page should be displayed in portrait or widescreen mode. Set this
+        value to true for portrait mode or false for widescreen mode.</p>
+
+      <p>Here is an example of a customized version of the settings and options area for a fictional company called
+        Alice's
+        Tech Support:</p>
+      <p>In this example, Alice's Tech Support has customized the code to show waiting tickets at the top of the page
+        and
+        to display the page in widescreen mode. They have also removed scheduled tickets from the top of the page.</p>
+
+      <div class="example">
+        //Settings - Enter your ticket status and API key<br>
+        let RDapi = "abc123-def456-ghi789-jkl012";<br>
+        let priorityQue = ["Same Day Repair", "RUSH - Priority Service"];<br>
+        let regularQue = ["Pending", "In Progress"];<br>
+        let waitingQue = ["Waiting on Customer", "Waiting for Parts"];<br>
+        let schedQue = ["Scheduled"];<br>
+        <br>
+        //Options<br>
+        <br>
+        //Add the waiting tickets at the top of the page<br>
+        let waitingBool = true;<br>
+        //Add scheduled tickets to the top of the page<br>
+        let schedBool = false;<br>
+        // Portrait = true ---- Widescreen = false<br>
+        let portVar = false;
+
+      </div>
+
+
+
+      <p>Once you have made your desired changes to the code, save the file by clicking "File" in the top menu and
+        selecting "Save." Then, you can use the code to display the list of tickets on your computer.</p>
+
+      <p class="important">Note: Make sure to keep the structure of the code, including the syntax and formatting, when
+        making your changes.
+        Incorrect syntax or formatting can cause the code to not work as intended. Do not edit below where it says "//
+        Do not edit beyond this line" as it may cause the code not to
+        work.</p>
+    </div>
+  </div>
+</body>
+
+</html>
