@@ -1,6 +1,5 @@
 //Settings - Enter your ticket status and API key
-
-let RDapi = "ENTER YOUR API";
+let RDapi = "Enter Your API Key";
 let priorityQue = ["Same Day Repair", "RUSH - Priority Service"];
 let regularQue = ["Pending", "In Progress"];
 let waitingQue = ["Waiting on Customer", "Waiting for Parts"];
@@ -10,9 +9,9 @@ let schedQue = ["Scheduled"];
 //Options
 
 //Add the waiting tickets at the top of the page
-let waitingBool = false;
+let waitingBool = true;
 //Add scheduled tickets to the top of the page
-let schedBool = false;
+let schedBool = true;
 //  Portrait = true ---- Widescreen = false
 let portVar = true;
 
@@ -47,37 +46,57 @@ function queBuilder(Tdata, que) {
     document.getElementById("bodyCont").classList.add('land');
   }
   let cellOutput = '';
+  let counter = 0;
+  //builder for regular and priority ques
   if (que.includes(regularQue[0])) {
-    cellOutput = '<h3>Regular Que</h3>';
-  }
-  if (que.includes(priorityQue[0])) {
-    cellOutput = '<h3>Priority Que</h3>';
+    cellOutput = '<h3>Regular Cue</h3>';
   }
   Tdata['ticketData'].slice().reverse().forEach(element => {
     if (que.includes(element["devices"]["0"]["status"]["name"])) {
+      if (que.includes(priorityQue[0])) {
+        document.getElementById("bodyCont").insertAdjacentHTML("beforeend", cellbuilder(element, cellOutput));
+        cellOutput = '';
+      }
       if (que.includes(regularQue[0])) {
         document.getElementById("bodyCont").insertAdjacentHTML("beforeend", cellbuilder(element, cellOutput));
         cellOutput = '';
       }
-      if (que.includes(priorityQue[0])) {
-        document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", cellbuilder(element, cellOutput));
-        cellOutput = '';
-      }
-      if (que.includes(waitingQue[0])) {
-        document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", waitingbuilder(element, cellOutput));
-        cellOutput = '';
-      }
+    }
+  });
+  if (que.includes(priorityQue[0])) {
+    document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", '<h3>Priority Cue</h3>');
+  }
+  //builder for Sched
+  Tdata['ticketData'].slice().reverse().forEach(element => {
+    if (que.includes(element["devices"]["0"]["status"]["name"])) {
       if (que.includes(schedQue[0])) {
         document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", schedbuilder(element, cellOutput));
         cellOutput = '';
+        counter = counter+1;
+      }
+    }
+  });
+  if (que.includes(schedQue[0])) {
+    if (counter != 0) {
+      document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", '<h3>Scheduled Cue</h3>');
+      counter = 0;
+    }
+  }
+  //waiting builder
+  Tdata['ticketData'].slice().reverse().forEach(element => {
+    if (que.includes(element["devices"]["0"]["status"]["name"])) {
+      if (que.includes(waitingQue[0])) {
+        document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", waitingbuilder(element, cellOutput));
+        cellOutput = '';
+        counter = counter+1;
       }
     }
   });
   if (que.includes(waitingQue[0])) {
-    document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", '<h3>Waiting Que</h3>');
-  }
-  if (que.includes(schedQue[0])) {
-    document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", '<h3>Scheduled Que</h3>');
+    if (counter != 0) {
+      document.getElementById("bodyCont").insertAdjacentHTML("afterbegin", '<h3>Waiting Cue</h3>');
+      counter = 0;
+    }
   }
 }
 
@@ -160,6 +179,3 @@ function resizeAllGridItems() {
     resizeGridItem(allItems[x]);
   }
 }
-
-
-// https://api.repairdesk.co/api/web/v1/tickets?api_key=gpqHV1Y-Aocf-JR7p-VWLF-wcZmzt7Uz&keyword=pending

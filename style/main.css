@@ -71,6 +71,7 @@ h3 {
 .jobCont {
   height: min-content;
   background-color: #fff;
+  color:#000;
   border-radius: 10px;
   grid-column: span 2;
 }
@@ -96,6 +97,7 @@ h3 {
 
 .tickDet {
   height: 44px;
+  background-color: #0071bd;
   color: #fff;
   font-size: 1.75rem;
   border-top-left-radius: 10px;
